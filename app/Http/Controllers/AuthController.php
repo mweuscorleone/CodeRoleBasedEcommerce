@@ -56,4 +56,16 @@ class AuthController extends Controller
             'message' => 'password changed successfully!'
         ], 200);
     }
+
+    public function logout(Request $request){
+        $user = auth()->user();
+
+        $user->currentAccessToken()->delete();
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'logout successfully!'
+        ], 200);
+    }
 }
