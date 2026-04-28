@@ -68,7 +68,17 @@ class CartController extends Controller
                'cart_items.quantity as Quantity'
             )->get();
 
-        return response($viewMyCart);
+        if($viewMyCart->isEmpty()){
+            return response()->json([
+                 'status' => 'success',
+                 'message' => 'sorry you don\'t have any products in a cart'
+                ], 200);
+            }
+        else{
+                 return response($viewMyCart);
+            }
+
+        
     }
     public function removeCart($cartItemId){
         $cartItem = DB::table('cart_items')->where('id', $cartItemId)->first();

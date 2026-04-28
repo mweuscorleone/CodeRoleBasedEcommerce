@@ -78,7 +78,7 @@ class CheckoutController extends Controller
                 ->decrement('stock_quantity', $item->quantity);
             }
 
-            DB::table('cart_items')->whereIn('cart_id', function($query){
+            DB::table('cart_items')->whereIn('cart_id', function($query) use ($userId){
                 $query->select('id')->from('carts')->where('user_id', auth()->id());
             })->delete();
 
