@@ -73,7 +73,7 @@ class CartController extends Controller
     public function removeCart($cartItemId){
         $cartItem = DB::table('cart_items')->where('id', $cartItemId)->first();
 
-        if(!$carItem){
+        if(!$cartItem){
             return response()->json(['message' => 'no item found in cart']);
         }
 

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('users')->cascadeOnDelete();
             $table->decimal('total_amount', 20, 2);
             $table->string('payment_method')->default('cash_on_delivery');
-            $table->enum('payment_status',['pending','paid']);
-            $table->enum('order_status',['assigned','delivered']);
+            $table->enum('payment_status',['pending','paid'])->default('pending');
+            $table->enum('order_status',['assigned','delivered','pending'])->default('pending');
+            $table->foreignId('driver_id')->nullable()->constrained('users')->nullonDelete();
             $table->string('phone');
             $table->string('address');
             $table->timestamps();

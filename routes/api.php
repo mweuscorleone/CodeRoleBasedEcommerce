@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,6 +31,7 @@ Route::middleware(['auth:sanctum', 'role:customer'])->group(function(){
     Route::post('/add/product/to/cart', [CartController::class, 'addToCart']);
     Route::get('/view/cart', [CartController::class, 'viewCart']);
     Route::delete('/remove/to/cart/{cartItemId}', [CartController::class, 'removeCart']);
+    Route::post('/order/checkout', [CheckoutController::class, 'checkout']);
 });
 Route::post('user/login', [AuthController::class, 'login']);
 Route::put('reset/user/password', [AuthController::class, 'resetPassword']);
