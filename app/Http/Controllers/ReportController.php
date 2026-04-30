@@ -44,7 +44,7 @@ class ReportController extends Controller
                         'order_items.quantity as quantity',
                         'orders.total_amount as total_amount'
                     )
-                    ->get();
+                    ->first();
 
         return response()->json($receipt);
                 
